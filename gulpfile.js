@@ -6,16 +6,16 @@ var gulp = require('gulp'),
 
 
 gulp.task('sass', function () {
-    return gulp.src('./dev/scss/**/*.scss')
+    return gulp.src('./scss/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./prod/css'))
+        .pipe(gulp.dest('./css'))
 });
 
 gulp.task('watch', function () {
-    gulp.watch('./dev/scss/**/*.scss', ['sass']);
+    gulp.watch('./scss/**/*.scss', ['sass']);
 });
 
 

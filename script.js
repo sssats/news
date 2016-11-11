@@ -4,20 +4,25 @@
     const API_KEY = 'c41606119eaa4f7096934765d567d115';
     const API_ARTICLES_URL = 'https://newsapi.org/v1/articles';
     const API_SOURCES_URL = 'https://newsapi.org/v1/sources';
-
-    function renderSourcesSelect(sources) {
-        let area = document.querySelector('.sourceSelectWrapper span');
-        let select = document.createElement('select');
-        let sourcesTemplate = '';
-        select.setAttribute('id', 'newsSources');
-
-        for (let source of sources) {
-            sourcesTemplate += `<option value="${source.id}" data-source-url="${source.url}">${source.name}</option>`;
+    class Spinner {
+        static show() {
+            document.querySelector('.spinner').style.display = 'block';
         }
 
-        select.innerHTML = sourcesTemplate;
+        static hide() {
+            document.querySelector('.spinner').style.display = 'none';
+        }
 
-        area.appendChild(select);
+    }
+
+    function renderSourcesSelect(sources) {
+        let area = document.querySelector('.sources');
+        let sourcesTemplate = '';
+        for (let source of sources) {
+            sourcesTemplate += `<a data-source-id="${source.id}"><img src="${source.urlsToLogos.small}" alt="${source.name}"></a>`;
+        }
+
+        area.innerHTML = sourcesTemplate
     }
 
     function getSources() {
@@ -37,7 +42,7 @@
 
         for (let newsItem of news) {
             newsTemplate +=
-                `<div class="news-item">
+                `<div class="newsItem">
                     <img src="${newsItem.urlToImage}" alt="${newsItem.title}">
                     <div class="wrapper">
                         <h4><a href="${newsItem.url}">${newsItem.title}</a></h4>
@@ -51,6 +56,7 @@
         }
 
         area.innerHTML = newsTemplate;
+        Spinner.hide();
     }
 
     function getNews(sourceId) {
@@ -61,13 +67,16 @@
 
     getSources();
 
-    let loadNewsButton = document.querySelector('#loadNews');
+    let sources = document.querySelector('.sources');
 
-    loadNewsButton.addEventListener('click', function () {
-        let select = document.querySelector('#newsSources');
-        let sourceId = select.options[select.selectedIndex].value;
-
-        getNews(sourceId);
+    sources.addEventListener('click', function (ev) {
+        let sourceId;
+        if (ev.target.tagName !== 'DIV') {
+            Spinner.show();
+            sourceId = ev.target.parentElement.getAttribute('data-source-id') ?
+                ev.target.parentElement.getAttribute('data-source-id'): ev.target.getAttribute('data-source-id');
+            getNews(sourceId);
+        }
     });
 
 })();
