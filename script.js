@@ -5,15 +5,6 @@
     const API_ARTICLES_URL = 'https://newsapi.org/v1/articles';
     const API_SOURCES_URL = 'https://newsapi.org/v1/sources';
 
-    class Sources {
-        constructor(id, url, name) {
-            this.id = id;
-            this.url = url;
-            this.name = name;
-        }
-
-    }
-
     function renderSourcesSelect(sources) {
         let area = document.querySelector('.sourceSelectWrapper span');
         let select = document.createElement('select');
@@ -39,15 +30,10 @@
             .then(json => getNews(json.sources[0].id));
     }
 
-    class News {
-
-    }
-
     function renderNews(news) {
         let area = document.querySelector('.newsWrapper');
-        let newsWrapper = document.createElement('div');
+        area.innerHTML = '';
         let newsTemplate = '';
-        newsWrapper.classList.add('news-wrapper');
 
         for (let newsItem of news) {
             newsTemplate +=
@@ -64,14 +50,13 @@
                 </div>`
         }
 
-        newsWrapper.innerHTML = newsTemplate;
-        area.appendChild(newsWrapper);
+        area.innerHTML = newsTemplate;
     }
 
     function getNews(sourceId) {
-        fetch(`${API_ARTICLES_URL}source=${sourceId}&apiKey=${API_KEY}`)
+        fetch(`${API_ARTICLES_URL}?source=${sourceId}&apiKey=${API_KEY}`)
             .then(response => response.json())
-            .then(json => renderNews(json));
+            .then(json => renderNews(json.articles));
     }
 
     getSources();
