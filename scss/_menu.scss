@@ -6,6 +6,11 @@ aside {
 
   background: #303F9F;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+
+  @media (max-width: 767px) {
+    width: 300px;
+    transform: translate3d(-300px, 0, 0);
+  }
 }
 
 .sources {
@@ -18,10 +23,6 @@ aside {
     color: #C5CAE9;
     cursor: pointer;
 
-    span {
-      margin-bottom: 1px;
-    }
-
     &.active, &:hover {
       span {
         margin-bottom: 0;
@@ -33,7 +34,7 @@ aside {
 
         top: -3px;
         width: 100%;
-        height: 1px;
+        height: 2px;
         background: #FF4081;
       }
     }
@@ -41,6 +42,11 @@ aside {
       width: 30px;
       max-height: 30px;
       margin-right: 10px;
+
+      @media (max-width: 767px) {
+        width: 40px;
+        max-height: 40px;
+      }
     }
 
     span {
@@ -49,10 +55,16 @@ aside {
 
       width: 139px;
       line-height: 30px;
+      margin-bottom: 2px;
 
       vertical-align: top;
       text-overflow: ellipsis;
       white-space: nowrap;
+
+      @media (max-width: 767px) {
+        width: 220px;
+        font-size: 18px;
+      }
     }
   }
 }

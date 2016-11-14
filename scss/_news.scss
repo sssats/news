@@ -1,18 +1,27 @@
 section {
   margin-left: 220px;
   background: #f1f1f1;
+
+  @media (max-width: 767px) {
+    margin-left: 0;
+  }
 }
 
-header {
+.sourceHeader {
   padding: 0 10px 20px 10px;
   margin-bottom: 30px;
   background: #3F51B5;
 
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16), 0 0 6px 0 rgba(0, 0, 0, 0.23);
+
   h1 {
     margin: 0;
     padding: 10px 0;
     color: #FFFFFF;
+
+    @media (max-width: 767px) {
+      padding-left: 70px;
+    }
   }
   span {
     color: #C5CAE9;
@@ -21,36 +30,58 @@ header {
 }
 
 .newsWrapper {
-  padding: 0 20px;
+  padding-bottom: 30px;
 }
 
 .newsItem {
   overflow: hidden;
+  box-sizing: border-box;
+  float: left;
+  width: calc(50% - 40px);
 
-  margin-bottom: 30px;
+  margin: 0 20px;
+
   padding-right: 10px;
   background: white;
 
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  &:not(:last-of-type) {
+    margin-bottom: 30px;
+  }
   &:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+
+  @media (max-width: 767px) {
+    float: none;
+    width: calc(100% - 20px);
+
+    margin: 0 10px;
   }
 
   img {
     float: left;
     width: 150px;
+
+    @media (max-width: 767px) {
+      width: 100px;
+    }
   }
-  .wrapper {
-    margin-left: 150px;
+  .newsDescription {
+    margin: 0 0 10px 150px;
     padding-left: 20px;
-    padding-bottom: 10px;
+
+    @media (max-width: 767px) {
+      margin-left: 100px;
+    }
   }
   h4 {
-    margin: 0;
+    padding: 10px 0 10px 20px;
+    margin: 0 0 0 150px;
+    @media (max-width: 767px) {
+      margin: 0 0 0 100px;
+    }
     a {
-      display: inline-block;
-      padding: 10px 0 10px 0;
-
       color: #303F9F;
       text-decoration: none;
     }
