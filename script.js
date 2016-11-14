@@ -59,7 +59,15 @@ class News {
                 this.parseSources(json.sources);
                 return json;
             })
-            .then(json => this.getNews(json.sources[0].id));
+            .catch(error => {
+                console.log(error);
+                Spinner.hide();
+            })
+            .then(json => this.getNews(json.sources[0].id))
+            .catch(error => {
+                console.log(error);
+                Spinner.hide();
+            });
     }
 
     static getNews(sourceId) {
@@ -67,7 +75,11 @@ class News {
             this.parseNews(newsArr[sourceId].getData().data, false);
         } else {
             this.getApiData(`${API_ARTICLES_URL}?source=${sourceId}&apiKey=${API_KEY}`)
-                .then(json => this.parseNews(json));
+                .then(json => this.parseNews(json))
+                .catch(error => {
+                    console.log(error);
+                    Spinner.hide();
+                });
         }
     }
 
