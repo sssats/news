@@ -140,10 +140,10 @@ sources.addEventListener('click', function (ev) {
 });
 
 document.querySelector('#nav').addEventListener('click', function () {
-    var body = document.querySelector('body');
-    if (body.classList.contains('menuOpened')) {
-        document.querySelector('body').classList.remove('menuOpened');
+    var html = document.querySelector('html');
+    if (html.classList.contains('menuOpened')) {
+        document.querySelector('html').classList.remove('menuOpened');
     } else {
-        document.querySelector('body').classList.add('menuOpened');
+        document.querySelector('html').classList.add('menuOpened');
     }
 });
