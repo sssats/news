@@ -5,6 +5,7 @@ html {
     &.menuOpened {
       position: fixed;
       overflow: hidden;
+      height: 100%;
       transform: translate3d(300px, 0, 0);
     }
   }
