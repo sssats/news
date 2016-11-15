@@ -106,13 +106,13 @@ class News {
 
         for (let newsItem of news.articles) {
             newsTemplate +=
-                `<div class="newsItem">
+                `<article class="newsItem">
                     <header>
                         <img src="${newsItem.urlToImage}" alt="${newsItem.title}">
                         <h4><a href="${newsItem.url}">${newsItem.title}</a></h4>
                     </header>
                     <p class="newsDescription">${newsItem.description}</p>
-                </div>`
+                </article>`
         }
         this.renderNews(newsTemplate, sourcesArr[news.source].getData().data);
     }
