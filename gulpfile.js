@@ -2,8 +2,8 @@ var gulp = require('gulp'),
     async = require('async'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
-    autoprefixer = require('gulp-autoprefixer');
-
+    autoprefixer = require('gulp-autoprefixer'),
+    babel = require("gulp-babel");
 
 gulp.task('sass', function () {
     return gulp.src('./scss/**/*.scss')
@@ -14,10 +14,17 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./css'))
 });
 
+gulp.task("babel", function () {
+    return gulp.src("src/script.js")
+        .pipe(babel())
+        .pipe(gulp.dest("./"));
+});
+
 gulp.task('watch', function () {
     gulp.watch('./scss/**/*.scss', ['sass']);
+    gulp.watch('./src/**/*.js', ['babel']);
 });
 
 
-gulp.task('default', ['sass', 'watch'], function () {
+gulp.task('default', ['babel', 'sass', 'watch'], function () {
 });
