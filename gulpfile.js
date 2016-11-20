@@ -13,18 +13,10 @@ gulp.task('sass', function () {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./css'))
 });
-
-gulp.task("babel", function () {
-    return gulp.src("src/script.js")
-        .pipe(babel())
-        .pipe(gulp.dest("./"));
-});
-
 gulp.task('watch', function () {
     gulp.watch('./scss/**/*.scss', ['sass']);
-    gulp.watch('./src/**/*.js', ['babel']);
 });
 
 
-gulp.task('default', ['babel', 'sass', 'watch'], function () {
+gulp.task('default', ['sass', 'watch'], function () {
 });
