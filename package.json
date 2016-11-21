@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d ./"
+    "build": "babel src -d js"
   },
   "repository": {
     "type": "git",
