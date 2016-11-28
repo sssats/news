@@ -6,7 +6,7 @@ module.exports = {
         index: "./src/script"
     },
     output: {
-        filename: "js/bundle.js"
+        filename: "assets/js/bundle.js"
     },
     module: {
         loaders: [
@@ -25,6 +25,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin("css/style.css")
+        new ExtractTextPlugin("assets/css/style.css")
     ]
 };

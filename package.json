@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "build": "babel src -d js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sssats/sssats.github.io.git"
@@ -24,7 +21,8 @@
     "css-loader": "^0.26.0",
     "node-sass": "^3.13.0",
     "sass-loader": "^4.0.2",
-    "webpack": "^1.13.3"
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
     "extract-text-webpack-plugin": "^1.0.1",
