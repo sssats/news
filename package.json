@@ -7,6 +7,11 @@
     "type": "git",
     "url": "git+https://github.com/sssats/sssats.github.io.git"
   },
+  "scripts": {
+    "server": "webpack-dev-server",
+    "production": "webpack --config webpack-production.config.js -p",
+    "development": "webpack"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -21,6 +26,7 @@
     "css-loader": "^0.26.0",
     "node-sass": "^3.13.0",
     "sass-loader": "^4.0.2",
+    "strip-loader": "^0.1.2",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   },

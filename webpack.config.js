@@ -26,5 +26,8 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin("assets/css/style.css")
-    ]
+    ],
+    devServer: {
+        hot: true
+    }
 };
