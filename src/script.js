@@ -5,7 +5,6 @@ import 'whatwg-fetch';
 import News from './News.js';
 import Spinner from './Spinner.js';
 
-import '../scss/style.scss';
 
 News.getSources();
 

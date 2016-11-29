@@ -112,6 +112,22 @@ footer {
     color: #303F9F;
     text-decoration: none; }
 
+.btn-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #303F9F; }
+  .btn-overlay .start {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    padding: 15px 25px;
+    border: none; }
+
 aside {
   position: fixed;
   width: 220px;
