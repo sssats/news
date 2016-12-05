@@ -10,7 +10,7 @@
   "scripts": {
     "server": "webpack-dev-server",
     "production": "webpack --config webpack-production.config.js -p",
-    "development": "webpack"
+    "development": "webpack --watch"
   },
   "author": "",
   "license": "ISC",

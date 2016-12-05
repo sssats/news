@@ -28,6 +28,10 @@ module.exports = {
         new ExtractTextPlugin("assets/css/style.css")
     ],
     devServer: {
-        hot: true
+        hot: true,
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000
+        }
     }
 };

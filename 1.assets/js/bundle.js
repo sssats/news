@@ -17,7 +17,7 @@ webpackJsonp([1],[
 
 	var _News2 = _interopRequireDefault(_News);
 
-	var _Spinner = __webpack_require__(305);
+	var _Spinner = __webpack_require__(307);
 
 	var _Spinner2 = _interopRequireDefault(_Spinner);
 
@@ -8649,20 +8649,13 @@ webpackJsonp([1],[
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _Spinner = __webpack_require__(305);
+	var _render = __webpack_require__(305);
 
-	var _Spinner2 = _interopRequireDefault(_Spinner);
+	var _render2 = _interopRequireDefault(_render);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var sourcesArr = [];
-	var newsArr = [];
-
-	var API_KEY = 'c41606119eaa4f7096934765d567d115';
-	var API_ARTICLES_URL = 'https://newsapi.org/v1/articles';
-	var API_SOURCES_URL = 'https://newsapi.org/v1/sources';
 
 	var News = function () {
 	    function News(type, data) {
@@ -8681,6 +8674,59 @@ webpackJsonp([1],[
 	            };
 	        }
 	    }], [{
+	        key: 'getSources',
+	        value: function getSources() {
+	            _render2.default.showSource();
+	        }
+	    }, {
+	        key: 'getNews',
+	        value: function getNews(sourceId) {
+	            _render2.default.showNews(sourceId);
+	        }
+	    }]);
+
+	    return News;
+	}();
+
+	exports.default = News;
+
+/***/ },
+/* 305 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _config = __webpack_require__(306);
+
+	var _config2 = _interopRequireDefault(_config);
+
+	var _Spinner = __webpack_require__(307);
+
+	var _Spinner2 = _interopRequireDefault(_Spinner);
+
+	var _createNews = __webpack_require__(308);
+
+	var _createNews2 = _interopRequireDefault(_createNews);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var sourcesArr = [];
+	var newsArr = [];
+
+	var renderFacade = function () {
+	    function renderFacade() {
+	        _classCallCheck(this, renderFacade);
+	    }
+
+	    _createClass(renderFacade, null, [{
 	        key: 'getApiData',
 	        value: function getApiData(url) {
 	            return fetch(url).then(function (response) {
@@ -8690,32 +8736,32 @@ webpackJsonp([1],[
 	            });
 	        }
 	    }, {
-	        key: 'getSources',
-	        value: function getSources() {
+	        key: 'showSource',
+	        value: function showSource() {
 	            var _this = this;
 
-	            this.getApiData(API_SOURCES_URL + '?language=en').then(function (json) {
+	            this.getApiData(_config2.default.API_SOURCES_URL + '?language=en').then(function (json) {
 	                _this.parseSources(json.sources);
 	                return json;
 	            }).catch(function (error) {
 	                console.log(error);
 	                _Spinner2.default.hide();
 	            }).then(function (json) {
-	                return _this.getNews(json.sources[0].id);
+	                return _this.showNews(json.sources[0].id);
 	            }).catch(function (error) {
 	                console.log(error);
 	                _Spinner2.default.hide();
 	            });
 	        }
 	    }, {
-	        key: 'getNews',
-	        value: function getNews(sourceId) {
+	        key: 'showNews',
+	        value: function showNews(sourceId) {
 	            var _this2 = this;
 
 	            if (newsArr[sourceId]) {
 	                this.parseNews(newsArr[sourceId].getData().data, false);
 	            } else {
-	                this.getApiData(API_ARTICLES_URL + '?source=' + sourceId + '&apiKey=' + API_KEY).then(function (json) {
+	                this.getApiData(_config2.default.API_ARTICLES_URL + '?source=' + sourceId + '&apiKey=' + _config2.default.API_KEY).then(function (json) {
 	                    return _this2.parseNews(json);
 	                }).catch(function (error) {
 	                    console.log(error);
@@ -8735,7 +8781,7 @@ webpackJsonp([1],[
 	                for (var _iterator = sources[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 	                    var source = _step.value;
 
-	                    sourcesArr[source.id] = new News('source', source);
+	                    sourcesArr[source.id] = (0, _createNews2.default)('source', source);
 	                    sourcesTemplate += '<a data-source-id="' + source.id + '">\n                        <img src="' + source.urlsToLogos.small + '" alt="' + source.name + '"/>\n                        <span>' + source.name + '</span>\n                    </a>';
 	                }
 	            } catch (err) {
@@ -8763,7 +8809,7 @@ webpackJsonp([1],[
 	            var newsTemplate = '';
 
 	            if (isNewNewsItem) {
-	                newsArr[news.source] = new News('news', news);
+	                newsArr[news.source] = (0, _createNews2.default)('news', news);
 	            }
 
 	            var _iteratorNormalCompletion2 = true;
@@ -8814,13 +8860,30 @@ webpackJsonp([1],[
 	        }
 	    }]);
 
-	    return News;
+	    return renderFacade;
 	}();
 
-	exports.default = News;
+	exports.default = renderFacade;
 
 /***/ },
-/* 305 */
+/* 306 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var config = {
+	    API_KEY: 'c41606119eaa4f7096934765d567d115',
+	    API_ARTICLES_URL: 'https://newsapi.org/v1/articles',
+	    API_SOURCES_URL: 'https://newsapi.org/v1/sources'
+	};
+
+	exports.default = config;
+
+/***/ },
+/* 307 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -8859,6 +8922,29 @@ webpackJsonp([1],[
 	}();
 
 	exports.default = Spinner;
+
+/***/ },
+/* 308 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _News = __webpack_require__(304);
+
+	var _News2 = _interopRequireDefault(_News);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function createNewsFactory(type, source) {
+	    console.log('Factory create ' + type);
+	    return new _News2.default(type, source);
+	};
+
+	exports.default = createNewsFactory;
 
 /***/ }
 ]);
